@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- https://web.dev/learn/forms/validation/ -->
+        <title>Help users enter the right data in forms</title>
+        <link rel="stylesheet" href="../styles/style.css" />
+
+        <style>
+            h2 {
+                margin-top: 20px;
+            }
+            input {
+                display: block;
+            }
+            input:required {
+                border: 2px solid;
+            }
+            /* Not supported by chrome */
+            input:user-invalid {
+                border: 2px solid red;
+            }
+            input:user-invalid + span::before {
+                content: '✖';
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <div class="wrapper">
+                <h2>1.</h2>
+                <form>
+                    <div>
+                        <label for="name">Name (required)</label>
+                        <input
+                            required
+                            minlength="10"
+                            type="text"
+                            id="name"
+                            name="name"
+                        />
+                    </div>
+                    <button>Save</button>
+                </form>
+                <script>
+                    const nameInput = document.querySelector('[name="name"]');
+                    console.log(nameInput);
+
+                    nameInput.addEventListener('invalid', () => {
+                        nameInput.setCustomValidity(
+                            'Yodawg I heard you like names.'
+                        );
+                    });
+                </script>
+            </div>
+            <div class="wrapper">
+                <h2>2.</h2>
+                <form>
+                    <div>
+                        <label for="email">Email (required)</label>
+                        <input required type="email" id="email" name="email" />
+                    </div>
+                    <button>Save</button>
+                </form>
+            </div>
+            <div class="wrapper">
+                <h2>3.</h2>
+                <form>
+                    <div>
+                        <label for="password">Password (required)</label>
+                        <input
+                            required
+                            minlength="8"
+                            type="password"
+                            id="password"
+                            name="password"
+                            aria-describedby="password-validation"
+                        />
+                        <span
+                            id="password-validation"
+                            class="validation-message"
+                            >Please use at least eight characters.</span
+                        >
+                    </div>
+                    <button>Save</button>
+                </form>
+            </div>
+            <div class="wrapper">
+                <h2>4.</h2>
+                <form>
+                    <label for="pass">Password (required)</label>
+                    <input
+                        required
+                        minlength="8"
+                        type="password"
+                        id="pass"
+                        name="pass"
+                        aria-describedby="pass-minlength"
+                    />
+                    <div id="pass-minlength">
+                        Enter at least eight characters
+                    </div>
+                </form>
+            </div>
+            <div class="wrapper">
+                <h2>5.</h2>
+                <form>
+                    <label for="animal"
+                        >What is your favorite animal? (required)</label
+                    >
+                    <input
+                        required
+                        pattern="[a-zA-Z]{2,20}"
+                        type="text"
+                        id="animal"
+                        name="animal"
+                    />
+                </form>
+            </div>
+        </main>
+        <script>
+            document.addEventListener(
+                'blur',
+                function (event) {
+                    // Validate the field
+                    const isValid = event.target.validity.valid;
+                    const message = event.target.validationMessage;
+                    const connectedValidationId =
+                        event.target.getAttribute('aria-describedby');
+                    const connectedValidation = connectedValidationId
+                        ? document.getElementById(connectedValidationId)
+                        : false;
+                    if (connectedValidation && message && !isValid) {
+                        connectedValidation.innerText = message;
+                    } else {
+                        connectedValidation.innerText = '';
+                    }
+                },
+                true
+            );
+        </script>
+    </body>
+</html>

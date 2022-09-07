@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- https://web.dev/learn/forms/accessibility/ -->
+        <link rel="stylesheet" href="../styles/style.css" />
+        
+        <title>Accessibility</title>
+
+        <style>
+            input,
+            .looks-like-input {
+                border: 1px solid black;
+                display: block;
+                width: 20em;
+                max-width: calc(100vw - 80px);
+                padding: 0.4em;
+            }
+
+            .looks-like-label {
+                margin-top: 1rem;
+            }
+
+            button {
+                margin-top: 2rem;
+            }
+
+            .validation-message {
+                display: block;
+                padding-top: 0.4em;
+                color: red;
+            }
+
+            label {
+                font-size: 1.3em;
+            }
+
+            h2 {
+                margin: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>1. Semantic vs. Non sematic</h2>
+        <main>
+            <div class="wrapper">
+                <form>
+                    <div>
+                        <label for="name-1">Name</label>
+                        <input type="text" id="name-1" name="name-1" required />
+                    </div>
+
+                    <div class="looks-like-label" for="name-2">Name</div>
+                    <div
+                        id="name-2"
+                        class="looks-like-input"
+                        contenteditable
+                    ></div>
+                    <button type="button">Save</button>
+                </form>
+            </div>
+
+            <h2>2.</h2>
+            <div class="wrapper">
+                <form>
+                    <div>
+                        <label for="name-3">Name (required)</label>
+                        <input
+                            required
+                            minlength="8"
+                            type="text"
+                            id="name-3"
+                            name="name-3"
+                            aria-describedby="name-validation-3"
+                        />
+                        <span id="name-validation-3" class="validation-message"
+                            >Please use at least eight characters.</span
+                        >
+                    </div>
+                    <button type="button">Save</button>
+                </form>
+            </div>
+            <h2>3.</h2>
+            <div class="wrapper">
+                <form>
+                    <div>
+                        <label for="name-4">Name</label>
+                        <input
+                            required
+                            minlength="10"
+                            type="text"
+                            id="name-4"
+                            name="name-4"
+                            aria-describedby="name-validation-4"
+                        />
+                        <span
+                            id="name-validation-4"
+                            aria-live="assertive"
+                            class="validation-message"
+                        ></span>
+                    </div>
+                    <button type="button">Save</button>
+                </form>
+                <script>
+                    document.addEventListener(
+                        'blur',
+                        function (event) {
+                            // Validate the field
+                            const isValid = event.target.validity.valid;
+                            const message = event.target.validationMessage;
+                            const connectedValidationId =
+                                event.target.getAttribute('aria-describedby');
+                            const connectedValidation = connectedValidationId
+                                ? document.getElementById(connectedValidationId)
+                                : false;
+
+                            if (connectedValidation && message && !isValid) {
+                                connectedValidation.innerText = '❌ ' + message;
+                            } else {
+                                connectedValidation.innerText = '';
+                            }
+                        },
+                        true
+                    );
+                </script>
+            </div>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- https://web.dev/learn/css/grid/ -->
+        <link rel="stylesheet" href="../styles/style.css" />
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👻</text></svg>"
+        />
+        <!-- 
+            🕶 🍔 👻 🤯 🙅 🤣 😭 👍
+        -->
+
+        <title>A simple grid</title>
+        
+        <style>
+            .container {
+                display: grid;
+                grid-template-columns: 5em 100px 30%;
+                grid-template-rows: 200px auto;
+                gap: 10px;
+                background-color: var(--color-stroke);
+                padding: 1em;
+                max-width: 30rem;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <div class="wrapper">
+                <article class="flow">
+                    <h1>A simple grid</h1>
+                    <figure class="callout">
+                        <p>
+                            In this example the grid container creates a grid
+                            with three column tracks and two row tracks.
+                        </p>
+                    </figure>
+                    <div class="container" id="container">
+                        <div class="box">Item one</div>
+                        <div class="box">Item two</div>
+                        <div class="box">Item three</div>
+                        <div class="box">Item four</div>
+                        <div class="box">Item five</div>
+                    </div>
+                </article>
+            </div>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- https://web.dev/learn/css/grid/ -->
+        <link rel="stylesheet" href="../styles/style.css" />
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👻</text></svg>"
+        />
+        <!-- 
+            🕶 🍔 👻 🤯 🙅 🤣 😭 👍
+        -->
+
+        <title>Grid Auto Flow</title>
+
+        <style>
+            :root {
+                --var-flow: row;
+                --var-mode: horizontal-tb;
+            }
+            .container {
+                writing-mode: var(--var-mode);
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-rows: repeat(2, minmax(100px, auto));
+                grid-auto-flow: var(--var-flow);
+                gap: 10px;
+                background-color: var(--color-stroke);
+                padding: 1em;
+                max-width: 30rem;
+            }
+            label {
+                --flow-space: 1rem;
+                display: grid;
+                grid-template-columns: 180px min-content;
+                gap: 0.2rem;
+            }
+            /* .box.one {
+                grid-column-end: span 2;
+                grid-row-end: span 2;
+                grid-row: auto / span 2;
+                grid-column: auto / span 2;
+            } */
+        </style>
+    </head>
+    <body>
+        <main>
+            <div class="wrapper">
+                <article class="flow">
+                    <h1>Grid auto flow</h1>
+                    <figure class="callout">
+                        <p>
+                            In this example try changes auto-flow from row to
+                            column and also change the writing mode.
+                        </p>
+                    </figure>
+                    <div class="controls">
+                        <label>
+                            Choose auto flow
+                            <select id="switcher">
+                                <option value="row">row</option>
+                                <option value="column">column</option>
+                            </select>
+                        </label>
+                        <label>
+                            Choose writing mode
+                            <select id="switcher2">
+                                <option value="horizontal-tb">
+                                    horizontal-tb
+                                </option>
+                                <option value="vertical-rl">vertical-rl</option>
+                                <option value="vertical-lr">vertical-lr</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="container" id="container">
+                        <div class="box one">Item one</div>
+                        <div class="box">Item two</div>
+                        <div class="box">Item three has more text</div>
+                        <div class="box">Item four</div>
+                        <div class="box">Item five</div>
+                    </div>
+                </article>
+            </div>
+        </main>
+        <script>
+            let switcher = document.getElementById('switcher');
+            let switcher2 = document.getElementById('switcher2');
+            let root = document.documentElement;
+
+            switcher.addEventListener('change', function (evt) {
+                root.style.setProperty('--var-flow', evt.target.value);
+            });
+
+            switcher2.addEventListener('change', function (evt) {
+                root.style.setProperty('--var-mode', evt.target.value);
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="../styles/style.css" />
+        <!-- https://web.dev/learn/forms/form-fields/ -->
+        <title>Help users enter data in forms</title>
+        <style>
+            h2 {
+                margin-top: 2em;
+            }
+            input:focus {
+                background-color: #d4f1f4;
+            }
+            html {
+                accent-color: #3740ff;
+                height: 2000vh;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <div class="wrapper">
+                <h2>1.</h2>
+                <form>
+                    <div>
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="numbre" />
+                    </div>
+                </form>
+                <h2>2.</h2>
+                <form>
+                    <div>
+                        <label for="photo">Photo</label>
+                        <input type="file" id="photo" name="photo" />
+                    </div>
+                    <button>Save</button>
+                </form>
+            </div>
+            <div class="wrapper">
+                <h2>3.</h2>
+                <form>
+                    <div>
+                        <label for="color">What is your favorite color?</label>
+                        <input type="text" id="color" name="colour" />
+                    </div>
+                </form>
+            </div>
+            <div class="wrapper">
+                <h2>4.</h2>
+                <form>
+                    <div>
+                        <input
+                            type="checkbox"
+                            id="subscribe"
+                            name="subscribe"
+                            value="web.dev"
+                            checked
+                        />
+                        <label for="subscribe">Subscribe</label>
+                    </div>
+                    <button>Save setting</button>
+                </form>
+            </div>
+            <div class="wrapper">
+                <h2>5.</h2>
+                <label for="comment">Comment</label>
+                <textarea id="comment" name="comment"></textarea>
+            </div>
+            <div class="wrapper">
+                <h2>6.</h2>
+                <label for="color">Color</label>
+                <select id="color" name="color">
+                    <option value="orange">Orange</option>
+                    <option value="pink">Pink</option>
+                </select>
+            </div>
+            <div class="wrapper">
+                <h2>7.</h2>
+                <form action="#" target="-blank">
+                    <div>
+                        <label for="mountain"
+                            >What is the highest mountain in Africa?</label
+                        >
+                        <select id="mountain" name="mountain">
+                            <option value="everest">Mount Everest</option>
+                            <option value="kilimanjaro">
+                                Mount Kilimanjaro
+                            </option>
+                            <option value="meru" selected>Mount Meru</option>
+                        </select>
+                    </div>
+                    <button>Save</button>
+                </form>
+            </div>
+            <div class="wrapper">
+                <h2>8.</h2>
+                <fieldset>
+                    <legend>What is your favorite web technology</legend>
+
+                    <input
+                        type="radio"
+                        name="webfeature"
+                        value="html"
+                        id="html"
+                    />
+                    <label for="html">HTML</label>
+
+                    <input
+                        type="radio"
+                        name="webfeature"
+                        value="css"
+                        id="css"
+                    />
+                    <label for="css">CSS</label>
+
+                    <input
+                        type="radio"
+                        name="webfeature"
+                        value="javascript"
+                        id="javascript"
+                    />
+                    <label for="javascript">JavaScript</label>
+                </fieldset>
+            </div>
+        </main>
+    </body>
+</html>

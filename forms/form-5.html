@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- https://web.dev/learn/forms/design-basics/ -->
+        
+        <title>Design basics</title>
+        
+        <link rel="stylesheet" href="../styles/style.css" />
+        <style>
+            html {
+                font-family: 'Roboto';
+            }
+            .warning {
+                padding: 0.4em;
+                margin-bottom: 2rem;
+                background: orange;
+            }
+
+            /* tap target size atleast 48px; 1rem (16px) font size */
+            button {
+                background: none;
+                border: none;
+                padding: 0;
+                color: black;
+                text-transform: capitalize;
+                margin-top: 2rem;
+                text-decoration: underline;
+            }
+
+            button:hover,
+            button:focus {
+                text-decoration: none;
+                background: none;
+                box-shadow: none;
+            }
+
+            div {
+                margin-bottom: 40px;
+            }
+
+            @media (pointer: fine) {
+                input[type='checkbox'] {
+                    width: 15px;
+                    height: 15px;
+                }
+            }
+
+            @media (pointer: coarse) {
+                input[type='checkbox'] {
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrapper">
+            <label for="email">Email address:</label>
+            <input type="email" id="email" name="email" />
+        </div>
+        <main>
+            <!-- chrome dev tools: accessibility -> source order -->
+            <div class="wrapper">
+                <p class="warning">
+                    <strong>Disclaimer:</strong> This is a demo showing how you
+                    shouldn't do it. Buttons should look like buttons.
+                </p>
+                <form>
+                    <div>
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" />
+                    </div>
+                    <button>Save</button>
+                </form>
+            </div>
+            <div class="wrapper">
+                <form>
+                    <label for="password">Password (required)</label>
+                    <input
+                        required
+                        minlength="8"
+                        type="password"
+                        id="password"
+                        name="password"
+                        aria-describedby="password-minlength"
+                        style="display: block"
+                    />
+                    <span id="password-minlength"
+                        >Enter at least eight characters</span
+                    >
+                </form>
+            </div>
+        </main>
+    </body>
+</html>

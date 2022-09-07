@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- https://web.dev/learn/css/flexbox/ -->
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👻</text></svg>"
+        />
+        <!-- 
+            🕶 🍔 👻 🤯 🙅 🥸 🤣 😭 👍
+        -->
+        <link rel="stylesheet" href="../styles/style.css" />
+
+        <title>Flexbox</title>
+
+        <style>
+            .page {
+                display: flex;
+            }
+
+            .page > * {
+                padding: 1rem;
+            }
+
+            .sidebar {
+                background: var(--color-primary-x-light);
+                outline: 1px solid var(--color-primary);
+                width: 14rem;
+
+                margin: 0;
+            }
+
+            /* Extrinsic sizes on this page simulate the small viewport for you */
+            body {
+                width: 400px;
+                height: 400px;
+                min-height: unset;
+                padding: 2rem;
+                border: 1px solid var(--color-stroke);
+                background: var(--color-off-white);
+                margin: 1rem auto;
+            }
+
+            .page {
+                background: white;
+                border: 1px solid var(--color-stroke);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="page">
+            <main class="content">
+                <article>
+                    <p>
+                        This is an article of content that sits inline with a
+                        sidebar. There's not enough room in the viewport at the
+                        moment so it's all very squished.
+                    </p>
+                </article>
+            </main>
+            <aside class="sidebar">
+                <p>This is a sidebar that is squished.</p>
+            </aside>
+        </div>
+    </body>
+</html>

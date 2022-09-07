@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- https://web.dev/learn/css/flexbox/ -->
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👻</text></svg>"
+        />
+        <!-- 
+            🕶 🍔 👻 🤯 🙅 🥸 🤣 😭 👍
+        -->
+        <link rel="stylesheet" href="../styles/style.css" />
+
+        <title>Flexbox</title>
+
+        <style>
+            .container {
+                display: flex;
+                gap: 1rem;
+            }
+
+            .box:nth-child(2) {
+                order: 2;
+            }
+
+            .box:nth-child(3) {
+                order: 3;
+            }
+
+            select {
+                min-width: 80px;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <div class="wrapper">
+                <article class="flow">
+                    <h1>The <code>flex-direction</code> property</h1>
+                    <figure class="callout">
+                        <p>
+                            Use the select list to change the
+                            <code>flex-direction</code>.
+                        </p>
+                    </figure>
+                    <div class="controls">
+                        <label>
+                            Change the <code>flex-direction</code>
+                            <select id="switcher">
+                                <option value="row">row</option>
+                                <option value="row-reverse">row-reverse</option>
+                                <option value="column">column</option>
+                                <option value="column-reverse">
+                                    column-reverse
+                                </option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="container" id="container">
+                        <div class="box bg-primary color-light">Item one</div>
+                        <div class="box">Item two</div>
+                        <div class="box bg-primary-x-light">Item three</div>
+                    </div>
+                </article>
+            </div>
+        </main>
+        <script>
+            const switcher = document.getElementById('switcher');
+            const demo = document.querySelector('.container');
+
+            switcher.addEventListener('change', evt => {
+                demo.style.flexDirection = evt.target.value;
+            });
+        </script>
+    </body>
+</html>

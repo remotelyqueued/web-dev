@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- https://web.dev/learn/css/flexbox/ -->
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👻</text></svg>"
+        />
+        <!-- 
+            🕶 🍔 👻 🤯 🙅 🥸 🤣 😭 👍
+        -->
+        <link rel="stylesheet" href="../styles/style.css" />
+
+        <title>Flexbox</title>
+
+        <style>
+            :root {
+                --var-flex-wrap: wrap;
+            }
+
+            .container {
+                display: flex;
+                gap: 1rem;
+                flex-wrap: var(--var-flex-wrap);
+                border: 1px solid var(--color-primary);
+                background: var(--color-primary-x-light);
+                max-width: 400px;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <div class="wrapper">
+                <article class="flow">
+                    <h1>Wrapped flex lines</h1>
+                    <figure class="callout">
+                        <p>
+                            In this example the flex container has
+                            <code>flex-wrap: wrap</code> so the flex items
+                            display at max-content size and wrap onto new lines.
+                        </p>
+                    </figure>
+                    <div class="controls">
+                        <label class="toggle" for="flexWrap">
+                            <span class="toggle__label"
+                                >Toggle flex wrapping off/on</span
+                            >
+                            <input
+                                type="checkbox"
+                                role="switch"
+                                class="toggle__element"
+                                id="flexWrap"
+                                checked
+                            />
+                            <div class="toggle__decor" aria-hidden="true">
+                                <div class="toggle__thumb"></div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="container" id="container">
+                        <div class="box">Item One</div>
+                        <div class="box">Item two</div>
+                        <div class="box">Item Three</div>
+                        <div class="box">Item Four</div>
+                        <div class="box">Item Five, with longer text</div>
+                        <div class="box">Item Six</div>
+                    </div>
+                </article>
+            </div>
+        </main>
+        <script>
+            const root = document.documentElement;
+            const flexWrap = document.getElementById('flexWrap');
+
+            flexWrap.addEventListener('click', () => {
+                root.style.setProperty(
+                    '--var-flex-wrap',
+                    flexWrap.checked ? 'wrap' : 'nowrap'
+                );
+            });
+        </script>
+    </body>
+</html>

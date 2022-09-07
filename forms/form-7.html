@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- https://web.dev/learn/forms/internationalization/ -->
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👍</text></svg>"
+        />
+        <!-- 
+            🕶 🍔 👻 🤯 🙅 🥸 🤣 😭 👍
+        -->
+        <link rel="stylesheet" href="../styles/style.css" />
+        
+        <title>Internationalization and localization</title>
+        
+        <style>
+            button {
+                margin-top: 1rem;
+                padding: 6px 32px;
+            }
+            label {
+                display: block;
+                margin-top: 1rem;
+            }
+            input {
+                border: 1px solid;
+                border-inline-start-width: 4px;
+            }
+            h1 {
+                margin-bottom: 6px;
+            }
+            p {
+                display: inline-flex;
+                align-items: center;
+                font-weight: bold;
+                font-size: 1.5em;
+                padding: 0.5em;
+                background: #f3f3f3;
+                border: 1px solid var(--color-stroke);
+            }
+            p svg {
+                width: 1.2em;
+                height: 1.2em;
+                margin-right: 0.5em;
+                flex: none;
+                fill: var(--color-primary);
+            }
+
+            .wrapper {
+                margin: 60px 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <div class="wrapper">
+                <h1>1.</h1>
+                <form>
+                    <div>
+                        <label for="animal"
+                            >What is your favorite animal?</label
+                        >
+                        <input type="text" id="animal" name="animal" />
+                    </div>
+                    <button type="button">Save</button>
+                </form>
+            </div>
+
+            <div class="wrapper">
+                <form>
+                    <div>
+                        <label for="address-one">Address line 1</label>
+                        <input
+                            required
+                            type="text"
+                            id="address-one"
+                            name="address-one"
+                        />
+                    </div>
+                    <div>
+                        <label for="address-two"
+                            >Address line 2 (optional)</label
+                        >
+                        <input
+                            type="text"
+                            id="address-two"
+                            name="address-two"
+                        />
+                    </div>
+                    <div>
+                        <label for="city">City</label>
+                        <input required type="text" id="city" name="city" />
+                    </div>
+                    <div>
+                        <label for="state"
+                            >State / Province / Region (optional)</label
+                        >
+                        <input type="text" id="state" name="state" />
+                    </div>
+                    <div>
+                        <label for="zip">ZIP / Postal code (optional)</label>
+                        <input type="text" id="zip" name="zip" />
+                    </div>
+                    <div>
+                        <label for="country">Country</label>
+                        <input type="text" id="country" name="country" />
+                    </div>
+                    <button type="button">Save address</button>
+                </form>
+            </div>
+        </main>
+        <p>
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                focusable="false"
+            >
+                <path
+                    d="M19,5h-2V3H7v2H5C3.9,5,3,5.9,3,7v1c0,2.55,1.92,4.63,4.39,4.94c0.63,1.5,1.98,2.63,3.61,2.96V19H7v2h10v-2h-4v-3.1 c1.63-0.33,2.98-1.46,3.61-2.96C19.08,12.63,21,10.55,21,8V7C21,5.9,20.1,5,19,5z M5,8V7h2v3.82C5.84,10.4,5,9.3,5,8z M12,14 c-1.65,0-3-1.35-3-3V5h6v6C15,12.65,13.65,14,12,14z M19,8c0,1.3-0.84,2.4-2,2.82V7h2V8z"
+                />
+            </svg>
+            <span>CSS is really good</span>
+        </p>
+    </body>
+</html>

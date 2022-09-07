@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- https://web.dev/learn/css/flexbox/ -->
+        <link
+            rel="icon"
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👻</text></svg>"
+        />
+        <!-- 
+            🕶 🍔 👻 🤯 🙅 🥸 🤣 😭 👍
+        -->
+        <link rel="stylesheet" href="../styles/style.css" />
+
+        <title>Flexbox</title>
+
+        <style>
+            .container {
+                display: flex;
+                gap: 1rem;
+                border: 1px solid var(--color-primary);
+                background: var(--color-primary-x-light);
+                min-height: 7rem;
+            }
+
+            .container[style*='column'] {
+                min-height: 25rem;
+            }
+
+            .toggle {
+                --flow-space: 1rem;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <div class="wrapper">
+                <article class="flow">
+                    <h1>The <code>align-self</code> property</h1>
+                    <figure class="callout">
+                        <p>
+                            Change the value of the
+                            <code>align-self</code> property on the first item.
+                        </p>
+                    </figure>
+                    <div class="controls flow">
+                        <label for="switcher">
+                            Item one’s <code>align-self</code>
+                            <select id="switcher">
+                                <option value="stretch">stretch</option>
+                                <option value="flex-start">flex-start</option>
+                                <option value="flex-end">flex-end</option>
+                                <option value="center">center</option>
+                            </select>
+                        </label>
+                        <label class="toggle" for="toggle-element">
+                            <span class="toggle__label"
+                                >Switch flex direction</span
+                            >
+                            <input
+                                type="checkbox"
+                                role="switch"
+                                class="toggle__element"
+                                id="toggle-element"
+                            />
+                            <div class="toggle__decor" aria-hidden="true">
+                                <div class="toggle__thumb"></div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="container" id="container">
+                        <div class="box bg-primary color-light">Item one</div>
+                        <div class="box">Item two</div>
+                        <div class="box bg-primary-x-light">
+                            Item three<br />with a line break
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </main>
+        <script>
+            const switcher = document.getElementById('switcher');
+            const box = document.querySelector('.box');
+            const container = document.querySelector('.container');
+            const toggle = document.getElementById('toggle-element');
+
+            switcher.addEventListener('change', evt => {
+                box.style.alignSelf = evt.target.value;
+            });
+
+            toggle.addEventListener('change', evt => {
+                container.style.flexDirection = toggle.checked
+                    ? 'column'
+                    : 'row';
+            });
+        </script>
+    </body>
+</html>
