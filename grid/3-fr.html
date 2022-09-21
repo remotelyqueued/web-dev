@@ -8,29 +8,35 @@
         <link rel="stylesheet" href="../styles/style.css" />
         <link
             rel="icon"
-            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👻</text></svg>"
-        />
+            href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👻</text></svg>" />
         <!-- 
             🕶 🍔 👻 🤯 🙅 🤣 😭 👍
         -->
 
-        <title>auto-fill vs auto-fit</title>
+        <title>The fr unit</title>
 
         <style>
             :root {
-                --var-repeat: auto-fill;
+                --var-col: 1fr;
             }
             .container {
                 display: grid;
-                grid-template-columns: repeat(
-                    var(--var-repeat),
-                    minmax(100px, 1fr)
-                );
+                grid-template-columns: 1fr 1fr var(--var-col);
+
                 grid-template-rows: 200px auto;
+                /* grid-template-rows: 1fr 1fr;  */
+                /* grid-template-rows: minmax(auto, 1fr); */
+
                 gap: 10px;
                 background-color: var(--color-stroke);
                 padding: 1em;
-                max-width: 70rem;
+                max-width: 30rem;
+            }
+            select {
+                min-width: unset;
+            }
+            .box.blue {
+                background-color: var(--color-primary-x-light);
             }
         </style>
     </head>
@@ -38,37 +44,31 @@
         <main>
             <div class="wrapper">
                 <article class="flow">
-                    <h1><code>auto-fill</code> vs <code>auto-fit</code></h1>
+                    <h1>The <code>fr</code> unit</h1>
                     <figure class="callout">
                         <p>
-                            In this example there will be as many tracks as will
-                            fit into the container with a minimum size of 100px.
-                        </p>
-                        <p>
-                            <code
-                                >grid-template-columns: repeat(auto-fill,
-                                minmax(100px, 1fr));</code
-                            >
-                        </p>
-                        <p>
-                            Change between auto-fill and auto-fit keywords to
-                            see the difference when our first row is not filled
-                            with items.
+                            In this example the grid container creates a grid
+                            with three column tracks of 1fr. Change the value of
+                            the final track.
                         </p>
                     </figure>
                     <div class="controls">
                         <label>
-                            Choose column size
+                            Choose column size of third track
                             <select id="switcher">
-                                <option value="auto-fill">auto-fill</option>
-                                <option value="auto-fit">auto-fit</option>
+                                <option value="1fr">1fr</option>
+                                <option value="2fr">2fr</option>
+                                <option value="3fr">3fr</option>
+                                <option value="4fr">4fr</option>
                             </select>
                         </label>
                     </div>
                     <div class="container" id="container">
                         <div class="box">Item one</div>
                         <div class="box">Item two</div>
-                        <div class="box">Item three</div>
+                        <div class="box blue">Item three has more text</div>
+                        <div class="box">Item four</div>
+                        <div class="box">Item five</div>
                     </div>
                 </article>
             </div>
@@ -78,7 +78,7 @@
             const root = document.documentElement;
 
             switcher.addEventListener('change', function (evt) {
-                root.style.setProperty('--var-repeat', evt.target.value);
+                root.style.setProperty('--var-col', evt.target.value);
             });
         </script>
     </body>

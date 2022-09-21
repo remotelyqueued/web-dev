@@ -2,9 +2,7 @@
 <html lang="en-us">
     <head>
         <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- https://web.dev/learn/css/grid/ -->
         <link rel="stylesheet" href="../styles/style.css" />
         <link
             rel="icon"
@@ -13,39 +11,32 @@
         <!-- 
             🕶 🍔 👻 🤯 🙅 🤣 😭 👍
         -->
-
-        <title>Grid stacking and z-index</title>
-
+        <title>9. Direction of grid lines</title>
         <style>
             :root {
-                --var-z-index: 0;
+                --var-direction: 'ltr';
+                --var-writing-mode: 'horizontal-tb';
             }
             .container {
                 display: grid;
+                direction: var(--var-direction);
+                writing-mode: var(--var-writing-mode);
                 grid-template-columns: 1fr 1fr 1fr;
                 grid-auto-rows: minmax(100px, auto);
                 grid-auto-flow: var(--var-packing);
                 gap: 10px;
-                background-color: #dadce0;
-                padding: 0.5em;
-                border-radius: 3px;
-                max-inline-size: 500px;
+                background-color: var(--color-stroke);
+                padding: 1em;
+                max-width: 30rem;
             }
-            .box {
-                z-index: 0;
+            .span-row {
+                grid-row: auto / span 2;
             }
-            .box:nth-child(1) {
-                grid-row: 1 / 4;
-                grid-column: 1;
-                z-index: var(--var-z-index);
+            .span-col {
+                grid-column: auto / span 2;
             }
-            .box:nth-child(2) {
-                grid-row: 1 / 3;
-                grid-column: 1 / -1;
-            }
-            .box:nth-child(3) {
-                grid-row: 2 / 4;
-                grid-column: 2 / -1;
+            .controls > * + * {
+                margin-top: 1rem;
             }
         </style>
     </head>
@@ -53,24 +44,33 @@
         <main>
             <div class="wrapper">
                 <article class="flow">
-                    <h1>Grid stacking and <code>z-index</code></h1>
+                    <h1>Direction of grid lines</h1>
                     <figure class="callout">
                         <p>
-                            Toggle item one's <code>z-index</code> to see how it
-                            affects stacking.
+                            Change the direction and writing mode to see the
+                            layout change.
                         </p>
                     </figure>
                     <div class="controls">
-                        <label class="toggle" for="z-index">
+                        <label for="switcher">
+                            Set writing mode
+                            <select id="switcher">
+                                <option value="horizontal-tb">
+                                    horizontal-tb
+                                </option>
+                                <option value="vertical-rl">vertical-rl</option>
+                                <option value="vertical-lr">vertical-lr</option>
+                            </select>
+                        </label>
+                        <label class="toggle" for="direction">
                             <span class="toggle__label"
-                                >Switch “item one” to have a
-                                <code>z-index</code> of 2</span
+                                >Set direction to right-to-left</span
                             >
                             <input
                                 type="checkbox"
                                 role="switch"
                                 class="toggle__element"
-                                id="z-index"
+                                id="direction"
                             />
                             <div class="toggle__decor" aria-hidden="true">
                                 <div class="toggle__thumb"></div>
@@ -78,9 +78,9 @@
                         </label>
                     </div>
                     <div class="container" id="container">
-                        <div class="box bg-primary color-light">Item one</div>
+                        <div class="box span-row">Item one</div>
                         <div class="box">Item two</div>
-                        <div class="box">Item three has more text</div>
+                        <div class="box span-col">Item three has more text</div>
                         <div class="box">Item four</div>
                         <div class="box">Item five</div>
                     </div>
@@ -89,13 +89,18 @@
         </main>
         <script>
             let root = document.documentElement;
+            let switcher = document.getElementById('switcher');
+            let direction = document.getElementById('direction');
 
-            let zIndex = document.getElementById('z-index');
-            zIndex.addEventListener('click', function (evt) {
-                if (zIndex.checked) {
-                    root.style.setProperty('--var-z-index', 2);
+            switcher.addEventListener('change', function (evt) {
+                root.style.setProperty('--var-writing-mode', evt.target.value);
+            });
+
+            direction.addEventListener('click', function (evt) {
+                if (direction.checked) {
+                    root.style.setProperty('--var-direction', 'rtl');
                 } else {
-                    root.style.setProperty('--var-z-index', 0);
+                    root.style.setProperty('--var-direction', 'ltr');
                 }
             });
         </script>

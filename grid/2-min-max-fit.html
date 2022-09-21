@@ -2,9 +2,7 @@
 <html lang="en-us">
     <head>
         <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- https://web.dev/learn/css/grid/ -->
         <link rel="stylesheet" href="../styles/style.css" />
         <link
             rel="icon"
@@ -14,29 +12,20 @@
             🕶 🍔 👻 🤯 🙅 🤣 😭 👍
         -->
 
-        <title>The fr unit</title>
+        <title>2. Intrinsic grid size</title>
 
         <style>
             :root {
-                --var-col: 1fr;
+                --var-col: auto;
             }
             .container {
                 display: grid;
-                grid-template-columns: 1fr 1fr var(--var-col);
-
+                grid-template-columns: repeat(3, var(--var-col));
                 grid-template-rows: 200px auto;
-                /* grid-template-rows: 1fr 1fr; */
-
                 gap: 10px;
                 background-color: var(--color-stroke);
                 padding: 1em;
                 max-width: 30rem;
-            }
-            select {
-                min-width: unset;
-            }
-            .box.blue {
-                background-color: var(--color-primary-x-light);
             }
         </style>
     </head>
@@ -44,29 +33,30 @@
         <main>
             <div class="wrapper">
                 <article class="flow">
-                    <h1>The <code>fr</code> unit</h1>
+                    <h1>Intrinsic grid sizing</h1>
                     <figure class="callout">
                         <p>
-                            In this example the grid container creates a grid
-                            with three column tracks of 1fr. Change the value of
-                            the final track.
+                            Use the dropdown to change the column sizes between
+                            the different intrinsic sizing keywords.
                         </p>
                     </figure>
                     <div class="controls">
                         <label>
-                            Choose column size of third track
+                            Choose column size
                             <select id="switcher">
-                                <option value="1fr">1fr</option>
-                                <option value="2fr">2fr</option>
-                                <option value="3fr">3fr</option>
-                                <option value="4fr">4fr</option>
+                                <option value="auto">auto</option>
+                                <option value="min-content">min-content</option>
+                                <option value="max-content">max-content</option>
+                                <option value="fit-content(7em)">
+                                    fit-content(7em)
+                                </option>
                             </select>
                         </label>
                     </div>
                     <div class="container" id="container">
                         <div class="box">Item one</div>
                         <div class="box">Item two</div>
-                        <div class="box blue">Item three has more text</div>
+                        <div class="box">Item three has more text</div>
                         <div class="box">Item four</div>
                         <div class="box">Item five</div>
                     </div>

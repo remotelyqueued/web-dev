@@ -2,9 +2,7 @@
 <html lang="en-us">
     <head>
         <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- https://web.dev/learn/css/grid/ -->
         <link rel="stylesheet" href="../styles/style.css" />
         <link
             rel="icon"
@@ -13,18 +11,14 @@
         <!-- 
             🕶 🍔 👻 🤯 🙅 🤣 😭 👍
         -->
-
-        <title>Direction of grid lines</title>
-
+        <title>8. Grid dense and sparse packing</title>
         <style>
             :root {
-                --var-direction: 'ltr';
-                --var-writing-mode: 'horizontal-tb';
+                --var-flow: row;
+                --var-mode: horizontal-tb;
             }
             .container {
                 display: grid;
-                direction: var(--var-direction);
-                writing-mode: var(--var-writing-mode);
                 grid-template-columns: 1fr 1fr 1fr;
                 grid-auto-rows: minmax(100px, auto);
                 grid-auto-flow: var(--var-packing);
@@ -39,42 +33,29 @@
             .span-col {
                 grid-column: auto / span 2;
             }
-            .controls > * + * {
-                margin-top: 1rem;
-            }
         </style>
     </head>
     <body>
         <main>
             <div class="wrapper">
                 <article class="flow">
-                    <h1>Direction of grid lines</h1>
+                    <h1>Grid dense and sparse packing</h1>
                     <figure class="callout">
                         <p>
-                            Change the direction and writing mode to see the
-                            layout change.
+                            Change the packing mode to see how this changes the
+                            layout of items.
                         </p>
                     </figure>
                     <div class="controls">
-                        <label for="switcher">
-                            Set writing mode
-                            <select id="switcher">
-                                <option value="horizontal-tb">
-                                    horizontal-tb
-                                </option>
-                                <option value="vertical-rl">vertical-rl</option>
-                                <option value="vertical-lr">vertical-lr</option>
-                            </select>
-                        </label>
-                        <label class="toggle" for="direction">
+                        <label class="toggle" for="gridPacking">
                             <span class="toggle__label"
-                                >Set direction to right-to-left</span
+                                >Turn on dense packing</span
                             >
                             <input
                                 type="checkbox"
                                 role="switch"
                                 class="toggle__element"
-                                id="direction"
+                                id="gridPacking"
                             />
                             <div class="toggle__decor" aria-hidden="true">
                                 <div class="toggle__thumb"></div>
@@ -93,18 +74,13 @@
         </main>
         <script>
             let root = document.documentElement;
-            let switcher = document.getElementById('switcher');
-            let direction = document.getElementById('direction');
 
-            switcher.addEventListener('change', function (evt) {
-                root.style.setProperty('--var-writing-mode', evt.target.value);
-            });
-
-            direction.addEventListener('click', function (evt) {
-                if (direction.checked) {
-                    root.style.setProperty('--var-direction', 'rtl');
+            let packing = document.getElementById('gridPacking');
+            packing.addEventListener('click', function (evt) {
+                if (packing.checked) {
+                    root.style.setProperty('--var-packing', 'row dense');
                 } else {
-                    root.style.setProperty('--var-direction', 'ltr');
+                    root.style.setProperty('--var-packing', 'row');
                 }
             });
         </script>

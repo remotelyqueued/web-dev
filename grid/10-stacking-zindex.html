@@ -14,12 +14,11 @@
             🕶 🍔 👻 🤯 🙅 🤣 😭 👍
         -->
 
-        <title>Grid dense and sparse packing</title>
+        <title>10. Grid stacking and z-index</title>
 
         <style>
             :root {
-                --var-flow: row;
-                --var-mode: horizontal-tb;
+                --var-z-index: 0;
             }
             .container {
                 display: grid;
@@ -27,15 +26,26 @@
                 grid-auto-rows: minmax(100px, auto);
                 grid-auto-flow: var(--var-packing);
                 gap: 10px;
-                background-color: var(--color-stroke);
-                padding: 1em;
-                max-width: 30rem;
+                background-color: #dadce0;
+                padding: 0.5em;
+                border-radius: 3px;
+                max-inline-size: 500px;
             }
-            .span-row {
-                grid-row: auto / span 2;
+            .box {
+                z-index: 0;
             }
-            .span-col {
-                grid-column: auto / span 2;
+            .box:nth-child(1) {
+                grid-row: 1 / 4;
+                grid-column: 1;
+                z-index: var(--var-z-index);
+            }
+            .box:nth-child(2) {
+                grid-row: 1 / 3;
+                grid-column: 1 / -1;
+            }
+            .box:nth-child(3) {
+                grid-row: 2 / 4;
+                grid-column: 2 / -1;
             }
         </style>
     </head>
@@ -43,23 +53,24 @@
         <main>
             <div class="wrapper">
                 <article class="flow">
-                    <h1>Grid dense and sparse packing</h1>
+                    <h1>Grid stacking and <code>z-index</code></h1>
                     <figure class="callout">
                         <p>
-                            Change the packing mode to see how this changes the
-                            layout of items.
+                            Toggle item one's <code>z-index</code> to see how it
+                            affects stacking.
                         </p>
                     </figure>
                     <div class="controls">
-                        <label class="toggle" for="gridPacking">
+                        <label class="toggle" for="z-index">
                             <span class="toggle__label"
-                                >Turn on dense packing</span
+                                >Switch “item one” to have a
+                                <code>z-index</code> of 2</span
                             >
                             <input
                                 type="checkbox"
                                 role="switch"
                                 class="toggle__element"
-                                id="gridPacking"
+                                id="z-index"
                             />
                             <div class="toggle__decor" aria-hidden="true">
                                 <div class="toggle__thumb"></div>
@@ -67,9 +78,9 @@
                         </label>
                     </div>
                     <div class="container" id="container">
-                        <div class="box span-row">Item one</div>
+                        <div class="box bg-primary color-light">Item one</div>
                         <div class="box">Item two</div>
-                        <div class="box span-col">Item three has more text</div>
+                        <div class="box">Item three has more text</div>
                         <div class="box">Item four</div>
                         <div class="box">Item five</div>
                     </div>
@@ -79,12 +90,12 @@
         <script>
             let root = document.documentElement;
 
-            let packing = document.getElementById('gridPacking');
-            packing.addEventListener('click', function (evt) {
-                if (packing.checked) {
-                    root.style.setProperty('--var-packing', 'row dense');
+            let zIndex = document.getElementById('z-index');
+            zIndex.addEventListener('click', function (evt) {
+                if (zIndex.checked) {
+                    root.style.setProperty('--var-z-index', 2);
                 } else {
-                    root.style.setProperty('--var-packing', 'row');
+                    root.style.setProperty('--var-z-index', 0);
                 }
             });
         </script>
